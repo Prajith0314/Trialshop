@@ -75,8 +75,11 @@ WSGI_APPLICATION = 'trialshop.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'trialshopdb',
+        'USER': 'root',
+        'PASSWORD': 'ARJITHPK@0314',
+        'HOST': 'localhost'
     }
 }
 
@@ -116,7 +119,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-
+STATICFILES_DIRS=[
+    os.path.join(BASE_DIR,"static")
+]
+STATIC_ROOT=os.path.join(BASE_DIR,"asset")
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
