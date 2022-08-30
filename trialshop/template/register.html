@@ -10,7 +10,8 @@
   <center>
   <div style="background-color:azure;width:300px;margin-top:150px; padding-top:40px; padding-bottom:50px;">
     <h2>REGISTER</h2>
-    <form action="registercheck/">
+    <form action="{% url 'register' %}" method="post">
+      {% csrf_token %}
     <input name="Username"  type="text" placeholder="Username" style="width:200px;height:25px;margin:5px" required><br><br>
     <input name="Firstname" type="text" placeholder="Firstname" style="width:200px;height:25px;margin:5px" required><br><br>
     <input name="Lastname" type="text" placeholder="Lastname" style="width:200px;height:25px;margin:5px" required><br><br>
@@ -20,6 +21,10 @@
     <br><br>
     <button type="Submit" style="width:200px;height:25px;color:black;background-color:antiquewhite;">Submit</button>
     </form>
+    <font color="red">
+      {{msg}}
+
+    </font>
   </div>
 </center>
 </body>
