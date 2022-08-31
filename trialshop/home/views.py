@@ -58,11 +58,6 @@ def register(request):
       
    else:
       return render(request,"register.html")
-  
-   #user=auth.authenticate(username=username,Firstname=Firstname,Lastname=Lastname,Email=Email,Password=Password,RePassword=RePassword)
-
-
-   return render(request,"test.html",{'key3':na,'key4':Firstname,'key5':Lastname,'key6':Email,'key7':Password,'key8':RePassword})
-        
-
-
+def logout(request):
+   auth.logout(request)
+   return redirect("/")      
