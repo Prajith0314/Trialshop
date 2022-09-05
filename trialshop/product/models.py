@@ -6,4 +6,4 @@ class fashion_collection(models.Model):
     price=models.IntegerField()
     desc=models.TextField()
     date=models.DateTimeField(auto_now_add=True)
-# Create your models here.
+

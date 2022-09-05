@@ -1,3 +1,4 @@
 from django.contrib import admin
+from.models import fashion_collection
 
-# Register your models here.
+admin.site.register(fashion_collection)
