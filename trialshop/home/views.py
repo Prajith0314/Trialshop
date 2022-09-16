@@ -64,5 +64,6 @@ def register(request):
 def logout(request):
    auth.logout(request)
    return redirect("/")
-def product(request):
-   return render(request,"test.html")         
+
+
+           
