@@ -66,6 +66,7 @@
          .Review-Box button{
             width:75px;
             height:40px;
+            border-radius:10px;
             border:3px solid gray;
             background-color:lavender;
 
@@ -220,31 +221,25 @@
             <br><br>
             <h1><b>COMMENT BOX</b></h1>
             <div class="comment-box">
-               <p>Prajith &nbsp;  <b>Good Product &nbsp;</b><small>19-11-2022 &nbsp;</small></p>
-               <p>Prajith &nbsp;  <b>Good Product &nbsp;</b><small>19-11-2022 &nbsp;</small></p>
-               <p>Prajith &nbsp;  <b>Good Product &nbsp;</b><small>19-11-2022 &nbsp;</small></p>
-               <p>Prajith &nbsp;  <b>Good Product &nbsp;</b><small>19-11-2022 &nbsp;</small></p>
-               <p>Prajith &nbsp;  <b>Good Product &nbsp;</b><small>19-11-2022 &nbsp;</small></p>
-               <p>Prajith &nbsp;  <b>Good Product &nbsp;</b><small>19-11-2022 &nbsp;</small></p>
-               <p>Prajith &nbsp;  <b>Good Product &nbsp;</b><small>19-11-2022 &nbsp;</small></p>
-               <p>Prajith &nbsp;  <b>Good Product &nbsp;</b><small>19-11-2022 &nbsp;</small></p>
-               <p>Prajith &nbsp;  <b>Good Product &nbsp;</b><small>19-11-2022 &nbsp;</small></p>
-               <p>Prajith &nbsp;  <b>Good Product &nbsp;</b><small>19-11-2022 &nbsp;</small></p>
-               <p>Prajith &nbsp;  <b>Good Product &nbsp;</b><small>19-11-2022 &nbsp;</small></p>
-               <p>Prajith &nbsp;  <b>Good Product &nbsp;</b><small>19-11-2022 &nbsp;</small></p>
-               <p>Prajith &nbsp;  <b>Good Product &nbsp;</b><small>19-11-2022 &nbsp;</small></p>
-               <p>Prajith &nbsp;  <b>Good Product &nbsp;</b><small>19-11-2022 &nbsp;</small></p>
-               <p>Prajith &nbsp;  <b>Good Product &nbsp;</b><small>19-11-2022 &nbsp;</small></p>
-               <p>Prajith &nbsp;  <b>Good Product &nbsp;</b><small>19-11-2022 &nbsp;</small></p>
-               <p>Prajith &nbsp;  <b>Good Product &nbsp;</b><small>19-11-2022 &nbsp;</small></p>
-               <p>Prajith &nbsp;  <b>Good Product &nbsp;</b><small>19-11-2022 &nbsp;</small></p>
-               <p>Prajith &nbsp;  <b>Good Product &nbsp;</b><small>19-11-2022 &nbsp;</small></p>
+               {% if key1.comments.all %}
+               {% for cmd in key1.comments.all %}
+               <p>{{cmd.name}} &nbsp;  <b>{{cmd.msg}}&nbsp;</b><small>{{cmd.date}}&nbsp;</small></p>
+               {% endfor %}
+               {% else %}
+               <h2>No comments....</h2>
+               {% endif %}
             </div>
+            <form action="{% url 'review' %}" method="post">
+               {% csrf_token %}
+            {% if user.is_authenticated %}  
             <div class="Review-Box">
-               <textarea placeholder="Enter the review here......"></textarea>
-               <button>Send</button>
-
+               <textarea name="msg" placeholder="Enter the review here...."></textarea>
+               <input type="hidden" name="pro" value="{{key1.id}}">
+               <input type="hidden" name="user" value="{{user.username}}">
+               <button type="submit">Send</button>
             </div>
+            {% endif %}
+         </form>
          </div>
       </div>
       <!-- end about section -->
