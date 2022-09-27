@@ -8,9 +8,14 @@ a="Php"
 m="testing"
 
 def index(request):
-   pro=fashion_collection.objects.all()
-   print(pro)
+   if request.method=='POST':
+      pname=request.POST['search']
+      pro=fashion_collection.objects.filter(name__istartswith=pname)
+   else:
+       pro=fashion_collection.objects.all()
    return render(request,"index.html",{"pro":pro})
+
+   
 
 def samp(request):
    return render(request,"test.html",{'l':a,'P':m})

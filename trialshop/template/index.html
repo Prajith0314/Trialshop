@@ -143,8 +143,9 @@
                      </div>
                      <div class="col-md-4">
                         <div class="search">
-                           <form action="/action_page.php">
-                              <input class="form_sea" type="text" placeholder="Search" name="search">
+                           <form action="{% url 'about' %}" method="post">
+                              {% csrf_token %}
+                              <input id="srh" class="form_sea" type="text" placeholder="Search" name="search">
                               <button type="submit" class="seach_icon"><i class="fa fa-search"></i></button>
                            </form>
                         </div>
@@ -430,6 +431,17 @@
       </footer>
       <!-- end footer -->
       <!-- Javascript files-->
+      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+      <script>
+         $(function(){
+            $('#srh').autocomplete({
+               source: "{% url 'comments' %}"
+            });
+         });
+      </script>
+
       <script src="{% static 'js/jquery.min.js' %}"></script>
       <script src="{% static 'js/popper.min.js' %}"></script>
       <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
@@ -437,6 +449,8 @@
       <!-- sidebar -->
       <script src="{% static 'js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
       <script src="{% static 'js/custom.js' %}"></script>
+      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>     
    </body>
 </html>
 
