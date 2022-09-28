@@ -12,11 +12,13 @@ def index(request):
       pname=request.POST['search']
       pro=fashion_collection.objects.filter(name__istartswith=pname)
    else:
-       pro=fashion_collection.objects.all()
-   return render(request,"index.html",{"pro":pro})
-
-   
-
+      pro=fashion_collection.objects.all()
+      if 'username' in request.COOKIES:
+         key1=request.COOKIES['username']
+         return render(request,'index.html',{'pro':pro,'key1':key1})
+      else:
+         return render(request,"index.html",{"pro":pro})
+          
 def samp(request):
    return render(request,"test.html",{'l':a,'P':m})
 
@@ -27,7 +29,9 @@ def login1(request):
       user=auth.authenticate(username=name,password=password)
       if user is not None:
          auth.login(request,user)
-         return redirect("/")
+         response=redirect('/')
+         response.set_cookie('username',name)
+         return response
       else:
          msg="invalid username and password"
          return render(request,"login.html",{'msg':msg})
@@ -68,7 +72,9 @@ def register(request):
       return render(request,"register.html")
 def logout(request):
    auth.logout(request)
-   return redirect("/")
+   response=redirect('/')
+   response.delete_cookie('username')
+   return response
 
 
            
