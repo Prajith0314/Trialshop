@@ -11,6 +11,7 @@ def index(request):
    if request.method=='POST':
       pname=request.POST['search']
       pro=fashion_collection.objects.filter(name__istartswith=pname)
+      return render(request,"index.html",{"pro":pro})
    else:
       pro=fashion_collection.objects.all()
       if 'username' in request.COOKIES:
