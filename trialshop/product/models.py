@@ -10,6 +10,9 @@ class fashion_collection(models.Model):
     def __str__(self):
         return self.name
 
+
+    class Meta:
+        ordering=('-date',)
 class comment_box(models.Model):
     fkey=models.ForeignKey(fashion_collection,related_name="comments",on_delete=models.CASCADE)
     name=models.CharField(max_length=100)
