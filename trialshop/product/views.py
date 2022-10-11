@@ -14,6 +14,31 @@ def about(request):
       cache.set(id,pro)
       print('DATA FROM DATABASES')
    return render(request,'about.html',{'key1':pro})
+
+def about2(request):
+   id=request.GET['id']
+   pro=fashion_collection.objects.get(id=id)
+
+
+   if 'recent' in request.session:
+      if id in request.session['recent']:
+         request.session['recent'].remove(id)
+      
+
+
+      print(request.session['recent'])
+      products=fashion_collection.objects.filter(id__in=request.session['recent'])
+      print(products)
+      request.session['recent'].insert(0,id)
+      if len(request.session['recent'])> 4:
+ 
+         request.session['recent'].pop()
+   else:
+         request.session['recent']=[id]
+         products=fashion_collection.objects.filter(id=id) 
+   request.session.modified=True 
+   return render(request,"about.html",{'key1':pro,'key2':products})
+
    
 def comment(request):
    name=request.POST['user']

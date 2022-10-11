@@ -75,11 +75,11 @@
    </head>
    <!-- body -->
    <body class="main-layout footer_to90 about_page">
-      <!-- loader  -->
+      <!-- loader 
       <div class="loader_bg">
          <div class="loader"><img src="{% static 'images/loading.gif' %}" alt="#" /></div>
       </div>
-      <!-- end loader -->
+      end loader -->
       <!-- header -->
       <header>
          <!-- header inner -->
@@ -209,7 +209,7 @@
                   <div class="about_text">
                      <h3>{{key1.name}}</h3>
                      <p>{{key1.desc}}</p>
-                     <a class="read_more" href="#">Read More</a>
+                     <a class="read_more" href="#">Read More</a><br><br><br>
                   </div>
                </div>
                
@@ -218,10 +218,10 @@
                      <figure><img src="{{key1.image.url}}" alt="#"/></figure>
                   </div>
                </div>
-               <img src="{{key1.image.url}}" width="100px" height="100px">
-               <img src="{{key1.image.url}}" width="100px" height="100px">
-               <img src="{{key1.image.url}}" width="100px" height="100px">
-               <img src="{{key1.image.url}}" width="100px" height="100px">
+               {% for i in key2 %}
+               <img src="{{i.image.url}}" width:"100px" height:"100px">
+               <b><h2>{{i.name}}</h2></b>
+               {% endfor %}
             </div>
             <br><br>
             <h1><b>COMMENT BOX</b></h1>
@@ -292,7 +292,7 @@
       </footer>
       <!-- end footer -->
       <!-- Javascript files-->
-      <script src="{% static 'js/jquery.min.js' %}"></script>
+      <!--<script src="{% static 'js/jquery.min.js' %}"></script> -->
       <script src="{% static 'js/popper.min.js' %}"></script>
       <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
       <script src="{% static 'js/jquery-3.0.0.min.js' %}"></script>
